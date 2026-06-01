@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id="c"></canvas>
+<script>
+[16, 48, 128].forEach(size => {
+  const c = document.getElementById('c');
+  c.width = c.height = size;
+  const ctx = c.getContext('2d');
+  
+  // Background
+  ctx.fillStyle = '#e94560';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, size, size, size * 0.18);
+  ctx.fill();
+  
+  // Arrow
+  const cx = size / 2;
+  const cy = size / 2;
+  const s = size * 0.25;
+  
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = size * 0.1;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  
+  // Down arrow
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - s);
+  ctx.lineTo(cx, cy + s * 0.6);
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.moveTo(cx - s * 0.6, cy);
+  ctx.lineTo(cx, cy + s * 0.6);
+  ctx.lineTo(cx + s * 0.6, cy);
+  ctx.stroke();
+  
+  // Bottom line
+  ctx.beginPath();
+  ctx.moveTo(cx - s, cy + s);
+  ctx.lineTo(cx + s, cy + s);
+  ctx.stroke();
+  
+  // Download link
+  const a = document.createElement('a');
+  a.download = `icon${size}.png`;
+  a.href = c.toDataURL();
+  a.textContent = `Download icon${size}.png`;
+  document.body.appendChild(a);
+  document.body.appendChild(document.createElement('br'));
+});
+</script>
+</body>
+</html>

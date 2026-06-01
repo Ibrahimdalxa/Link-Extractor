@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Link Extractor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>🔗 Link Extractor</h1>
+      <p class="subtitle">Extract download links from current page</p>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="filter-group">
+        <label for="filterType">Filter by type:</label>
+        <select id="filterType">
+          <option value="all">All Links</option>
+          <option value="images">Images (png, jpg, gif, svg, webp)</option>
+          <option value="videos">Videos (mp4, webm, avi, mkv)</option>
+          <option value="audio">Audio (mp3, wav, ogg, flac)</option>
+          <option value="documents">Documents (pdf, doc, xls, ppt)</option>
+          <option value="archives">Archives (zip, rar, 7z, tar)</option>
+          <option value="executables">Executables (exe, msi, dmg, deb)</option>
+          <option value="custom">Custom Extension</option>
+        </select>
+      </div>
+
+      <div class="custom-filter" id="customFilterGroup" style="display: none;">
+        <input type="text" id="customExtension" placeholder="e.g., .csv, .json, .xml">
+      </div>
+
+      <div class="search-group">
+        <input type="text" id="searchInput" placeholder="Search links...">
+      </div>
+
+      <div class="button-row">
+        <button id="extractBtn" class="btn btn-primary">🔍 Extract Links</button>
+        <button id="refreshBtn" class="btn btn-secondary">🔄 Refresh</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats" id="stats" style="display: none;">
+      <span id="totalCount">0 links found</span>
+      <span id="filteredCount"></span>
+    </div>
+
+    <!-- Select All / Actions -->
+    <div class="actions" id="actions" style="display: none;">
+      <div class="select-all-group">
+        <input type="checkbox" id="selectAll">
+        <label for="selectAll">Select All</label>
+      </div>
+      <div class="action-buttons">
+        <button id="copySelectedBtn" class="btn btn-small">📋 Copy Selected</button>
+        <button id="copyAllBtn" class="btn btn-small">📋 Copy All</button>
+        <button id="downloadSelectedBtn" class="btn btn-small btn-success">⬇️ Download Selected</button>
+        <button id="exportBtn" class="btn btn-small">💾 Export as TXT</button>
+      </div>
+    </div>
+
+    <!-- Links List -->
+    <div class="links-container" id="linksContainer">
+      <div class="empty-state" id="emptyState">
+        <p>Click "Extract Links" to scan the current page</p>
+      </div>
+      <ul class="links-list" id="linksList"></ul>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar" id="statusBar"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
